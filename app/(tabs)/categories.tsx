@@ -17,17 +17,21 @@ export default function CategoriesScreen() {
     return map;
   }, []);
 
+  const total = ALL_CONVERTERS.length;
+  const catCount = CATEGORY_ORDER.filter((c) => groups[c]).length;
+
   return (
     <SafeAreaView edges={['top']} className="flex-1 bg-bg dark:bg-bg-dark">
-      <ScrollView contentContainerClassName="p-4 pb-8" showsVerticalScrollIndicator={false}>
-        <Text variant="h1">Browse</Text>
-        <Text variant="body" tone="muted" className="mt-1">
-          {`${ALL_CONVERTERS.length} tools across ${CATEGORY_ORDER.filter((c) => groups[c]).length} categories.`}
+      <ScrollView contentContainerClassName="px-4 pt-3 pb-4" showsVerticalScrollIndicator={false}>
+        <Text variant="caption" tone="muted">EXPLORE</Text>
+        <Text variant="h1" className="mt-0.5">Browse all tools</Text>
+        <Text variant="small" tone="muted" className="mt-1">
+          {`${total} calculators across ${catCount} categories`}
         </Text>
 
-        <View className="flex-row flex-wrap -m-1.5 mt-4">
+        <View className="flex-row flex-wrap -m-1 mt-3">
           {CATEGORY_ORDER.filter((cat) => groups[cat]).map((cat) => (
-            <View key={cat} className="w-1/2 p-1.5">
+            <View key={cat} className="w-1/2 p-1">
               <CategoryCard category={cat} count={groups[cat]} />
             </View>
           ))}

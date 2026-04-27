@@ -25,30 +25,35 @@ export function CategoryCard({
     <Pressable
       onPress={() => router.push(`/category/${encodeURIComponent(category)}` as any)}
       className={cn(
-        'min-h-[130px] rounded-xl p-4 overflow-hidden shadow-md active:opacity-90',
+        'h-[108px] rounded-md p-3 overflow-hidden active:opacity-90',
         !fullWidth && 'flex-1',
       )}
-      style={{ backgroundColor: grad1, shadowColor: grad2 }}
+      style={{
+        backgroundColor: grad1,
+        shadowColor: grad2,
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        shadowOffset: { width: 0, height: 4 },
+        elevation: 3,
+      }}
     >
       <View
-        className="absolute rounded-full opacity-50"
-        style={{ width: 160, height: 160, top: -50, right: -40, backgroundColor: grad2 }}
+        className="absolute rounded-full opacity-40"
+        style={{ width: 110, height: 110, top: -30, right: -25, backgroundColor: grad2 }}
       />
-      <View className="flex-row justify-between items-center">
-        <View className="w-9 h-9 rounded-md items-center justify-center bg-white/20">
-          <Ionicons name={cfg.icon as any} size={20} color="#fff" />
+      <View className="flex-row justify-between items-start">
+        <View className="w-7 h-7 rounded-md items-center justify-center bg-white/20">
+          <Ionicons name={cfg.icon as any} size={16} color="#fff" />
         </View>
-        <View className="px-2.5 py-1 rounded-pill bg-black/20">
-          <Text variant="caption" className="text-white">
-            {String(count)}
-          </Text>
+        <View className="px-1.5 py-0.5 rounded-pill bg-black/25">
+          <Text variant="caption" className="text-white">{String(count)}</Text>
         </View>
       </View>
-      <View className="mt-4">
-        <Text variant="h2" className="text-white">
+      <View className="mt-auto">
+        <Text variant="bodyStrong" className="text-white" numberOfLines={1}>
           {category}
         </Text>
-        <Text variant="small" className="text-white/85 mt-1" numberOfLines={2}>
+        <Text variant="caption" className="text-white/85 mt-0.5" numberOfLines={2}>
           {cfg.description}
         </Text>
       </View>

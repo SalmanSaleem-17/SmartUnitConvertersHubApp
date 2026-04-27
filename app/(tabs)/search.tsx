@@ -35,33 +35,33 @@ export default function SearchScreen() {
 
   return (
     <SafeAreaView edges={['top']} className="flex-1 bg-bg dark:bg-bg-dark">
-      <View className="px-4 pt-2 pb-3">
-        <Text variant="h1">Search</Text>
-        <Text variant="body" tone="muted" className="mt-1 mb-3">
-          {`Find any of ${ALL_CONVERTERS.length} calculators in seconds.`}
-        </Text>
-        <Input
-          value={q}
-          onChangeText={setQ}
-          placeholder="Search by name, category, or use case…"
-          icon="search"
-          rightSlot={
-            q ? (
-              <Pressable onPress={() => setQ('')} hitSlop={8}>
-                <Ionicons name="close-circle" size={18} color={tokens.icon} />
-              </Pressable>
-            ) : null
-          }
-          autoCorrect={false}
-          autoCapitalize="none"
-        />
+      <View className="px-4 pt-3 pb-2">
+        <Text variant="caption" tone="muted">SEARCH</Text>
+        <Text variant="h1" className="mt-0.5">Find a calculator</Text>
+        <View className="mt-3">
+          <Input
+            value={q}
+            onChangeText={setQ}
+            placeholder={`Search ${ALL_CONVERTERS.length} tools…`}
+            icon="search"
+            rightSlot={
+              q ? (
+                <Pressable onPress={() => setQ('')} hitSlop={8}>
+                  <Ionicons name="close-circle" size={16} color={tokens.icon} />
+                </Pressable>
+              ) : null
+            }
+            autoCorrect={false}
+            autoCapitalize="none"
+          />
+        </View>
       </View>
 
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 16, gap: 8, paddingBottom: 8 }}
-        style={{ flexGrow: 0 }}
+        contentContainerStyle={{ paddingHorizontal: 16, gap: 6, paddingBottom: 6 }}
+        style={{ flexGrow: 0, maxHeight: 40 }}
       >
         <FilterChip label="All" active={!activeCat} tint={tokens.primary} onPress={() => setActiveCat(null)} />
         {CATEGORY_ORDER.map((cat) => {
@@ -81,22 +81,20 @@ export default function SearchScreen() {
       </ScrollView>
 
       <ScrollView
-        contentContainerClassName="p-4 pb-8 gap-2.5"
+        contentContainerClassName="px-4 pt-2 pb-3 gap-2"
         showsVerticalScrollIndicator={false}
       >
         {filtered.length === 0 ? (
           <View className="pt-16 items-center">
-            <Ionicons name="sad" size={56} color={tokens.textSubtle} />
-            <Text variant="h3" className="mt-3">
-              No results
-            </Text>
-            <Text variant="body" tone="muted" align="center" className="mt-1">
+            <Ionicons name="search" size={48} color={tokens.textSubtle} />
+            <Text variant="h3" className="mt-3">No results</Text>
+            <Text variant="small" tone="muted" align="center" className="mt-1">
               Try a different keyword or clear the filter.
             </Text>
           </View>
         ) : (
           <>
-            <Text variant="caption" tone="muted" className="pl-1">
+            <Text variant="caption" tone="muted" className="pl-1 mb-1">
               {filtered.length} {filtered.length === 1 ? 'RESULT' : 'RESULTS'}
             </Text>
             {filtered.map((conv) => (
@@ -125,12 +123,10 @@ function FilterChip({
   return (
     <Pressable
       onPress={onPress}
-      className={cn(
-        'px-3.5 py-2 rounded-pill border-hairline active:opacity-85',
-      )}
+      className={cn('px-3 py-1.5 rounded-pill border-hairline active:opacity-85')}
       style={{
         backgroundColor: active ? tint : tintBg ?? 'transparent',
-        borderColor: active ? tint : 'rgba(0,0,0,0.08)',
+        borderColor: active ? tint : 'rgba(0,0,0,0.06)',
       }}
     >
       <Text variant="caption" style={{ color: active ? '#fff' : tint }}>

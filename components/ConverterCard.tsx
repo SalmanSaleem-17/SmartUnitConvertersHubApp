@@ -27,28 +27,18 @@ export function ConverterCard({ converter, compact }: { converter: ConverterMeta
       padded={false}
       className="overflow-hidden"
     >
-      <View className={cn('flex-row items-center gap-3', compact ? 'p-3' : 'p-3.5')}>
-        <IconBadge icon={iconFor(converter.icon)} bg={tintBg} color={tint} size={compact ? 36 : 44} />
+      <View className={cn('flex-row items-center gap-2.5', compact ? 'p-2.5' : 'p-3')}>
+        <IconBadge icon={iconFor(converter.icon)} bg={tintBg} color={tint} size={compact ? 32 : 36} />
         <View className="flex-1 gap-0.5">
-          <Text variant={compact ? 'bodyStrong' : 'h3'} numberOfLines={compact ? 1 : 2}>
+          <Text variant={compact ? 'bodyStrong' : 'bodyStrong'} numberOfLines={1}>
             {converter.name}
           </Text>
-          {!compact && (
-            <Text variant="small" tone="muted" numberOfLines={2}>
-              {converter.description}
-            </Text>
-          )}
-        </View>
-        <Ionicons name="chevron-forward" size={18} color={tokens.textSubtle} />
-      </View>
-      {!compact && (
-        <View className="flex-row items-center gap-1.5 px-3.5 py-2 border-t-hairline border-border dark:border-border-dark">
-          <View className="w-1.5 h-1.5 rounded-pill" style={{ backgroundColor: tint }} />
-          <Text variant="caption" style={{ color: tint }}>
-            {converter.category}
+          <Text variant="caption" tone="muted" numberOfLines={2}>
+            {compact ? converter.category : converter.description}
           </Text>
         </View>
-      )}
+        <Ionicons name="chevron-forward" size={16} color={tokens.textSubtle} />
+      </View>
     </PressableCard>
   );
 }
